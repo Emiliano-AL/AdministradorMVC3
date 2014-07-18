@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="76d8d0f906164510816e172019d46c49" Name="Diagrama1">
+        <EntityTypeShape EntityType="rysi_adoModel.autobus" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rysi_adoModel.boleto" Width="1.5" PointX="12" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="rysi_adoModel.ciudade" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="rysi_adoModel.corrida" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="rysi_adoModel.estado" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rysi_adoModel.itineriario" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="rysi_adoModel.terminale" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="rysi_adoModel.FK_boletos_corridas" ManuallyRouted="false" />
+        <AssociationConnector Association="rysi_adoModel.FK_ciudades_estados" ManuallyRouted="false" />
+        <AssociationConnector Association="rysi_adoModel.FK_terminales_ciudades" ManuallyRouted="false" />
+        <AssociationConnector Association="rysi_adoModel.FK_corridas_itineriarios" ManuallyRouted="false" />
+        <AssociationConnector Association="rysi_adoModel.FK_itineriarios_terminales_destino" ManuallyRouted="false" />
+        <AssociationConnector Association="rysi_adoModel.FK_itineriarios_terminales_origen" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

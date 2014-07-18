@@ -1,0 +1,33 @@
+﻿@model adoProject.Models.ciudade
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Esta seguro que quiere eliminar esta ciudad?</h3>
+<fieldset>
+    <legend>ciudad</legend>
+
+    <div class="display-label">idciudad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idciudad)
+    </div>
+
+    <div class="display-label">nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">estado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.estado.nombre)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Regresar", "Index")
+    </p>
+}

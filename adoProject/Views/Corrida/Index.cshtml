@@ -1,0 +1,28 @@
+﻿@model IEnumerable<adoProject.Models.corrida>
+
+@{
+    ViewBag.Title = "Index";
+ WebGrid grid = new WebGrid(Model);
+}
+
+<h2>Corridas</h2>
+@grid.GetHtml(tableStyle:"table table-hover", columns: new []{
+    grid.Column("folio", canSort:false, header:"Folio"),
+    grid.Column("Origen", canSort:false, format: t => t.itineriario.id ),
+    grid.Column("fecha", canSort:false, header:"Fecha de viaje"),
+    grid.Column("servicio", canSort:false, header:"Servicio"),
+    grid.Column("estatus", canSort:false, header:"Estatus"),
+    grid.Column("precio", canSort:false, header:"Precio"),
+    grid.Column("iva", canSort:false, header:"IVA"),
+    grid.Column("total", canSort:false, header:"Total"),
+    grid.Column(header:"Acciones", format:@<text>
+        @Html.ActionLink("Editar", "Edit", new { id=item.folio}) | 
+        @Html.ActionLink("Detalle", "Details", new { id=item.folio }) |
+        @Html.ActionLink("Eliminar", "Delete", new { id=item.folio })
+    </text>)
+})
+
+<p>
+    @Html.ActionLink("Agregar corrida", "Create")
+</p>
+

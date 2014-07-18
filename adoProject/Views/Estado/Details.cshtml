@@ -1,0 +1,25 @@
+﻿@model adoProject.Models.estado
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>estado</legend>
+
+    <div class="display-label">idestado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idestado)
+    </div>
+
+    <div class="display-label">nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id=Model.idestado }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

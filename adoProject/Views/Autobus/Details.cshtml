@@ -1,0 +1,35 @@
+﻿@model adoProject.Models.autobus
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>autobus</legend>
+
+    @*<div class="display-label">codigo</div>*@
+    @*<div class="display-field">*@
+        @*@Html.DisplayFor(model => model.codigo)*@
+    @*</div>*@
+
+    <div class="display-label">linea</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.linea)
+    </div>
+
+    <div class="display-label">estatus</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.estatus)
+    </div>
+
+    <div class="display-label">capacidad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.capacidad)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.codigo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

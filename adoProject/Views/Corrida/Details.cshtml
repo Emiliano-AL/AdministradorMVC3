@@ -1,0 +1,60 @@
+﻿@model adoProject.Models.corrida
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles de la corrida</h2>
+
+<fieldset>
+    <legend>corrida</legend>
+
+    <div class="display-label">folio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.folio)
+    </div>
+
+    <div class="display-label">itineriario</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.itineriario.id)
+    </div>
+
+    <div class="display-label">fecha</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fecha)
+    </div>
+
+    <div class="display-label">servicio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.servicio)
+    </div>
+
+    <div class="display-label">estatus</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.estatus)
+    </div>
+
+    <div class="display-label">precio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.precio)
+    </div>
+
+    <div class="display-label">iva</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.iva)
+    </div>
+
+    <div class="display-label">total</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.total)
+    </div>
+
+    <div class="display-label">disponibles</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.disponibles)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id=Model.folio }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

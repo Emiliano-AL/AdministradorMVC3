@@ -1,0 +1,38 @@
+﻿@model adoProject.Models.terminale
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Esta seguro que quiere eliminar esta terminal?</h3>
+<fieldset>
+    <legend>terminale</legend>
+
+    <div class="display-label">idterminal</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idterminal)
+    </div>
+
+    <div class="display-label">nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">ciudad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ciudade.nombre)
+    </div>
+
+    <div class="display-label">codigo de terminal</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.codigoterminal)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Eliminar" /> |
+        @Html.ActionLink("Regresar", "Index")
+    </p>
+}

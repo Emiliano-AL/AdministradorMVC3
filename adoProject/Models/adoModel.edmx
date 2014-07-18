@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="rysi_adoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="rysi_adoModelStoreContainer">
+          <EntitySet Name="autobuses" EntityType="rysi_adoModel.Store.autobuses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="boletos" EntityType="rysi_adoModel.Store.boletos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ciudades" EntityType="rysi_adoModel.Store.ciudades" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="corridas" EntityType="rysi_adoModel.Store.corridas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="estados" EntityType="rysi_adoModel.Store.estados" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="itineriarios" EntityType="rysi_adoModel.Store.itineriarios" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="terminales" EntityType="rysi_adoModel.Store.terminales" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_boletos_corridas" Association="rysi_adoModel.Store.FK_boletos_corridas">
+            <End Role="corridas" EntitySet="corridas" />
+            <End Role="boletos" EntitySet="boletos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ciudades_estados" Association="rysi_adoModel.Store.FK_ciudades_estados">
+            <End Role="estados" EntitySet="estados" />
+            <End Role="ciudades" EntitySet="ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_corridas_itineriarios" Association="rysi_adoModel.Store.FK_corridas_itineriarios">
+            <End Role="itineriarios" EntitySet="itineriarios" />
+            <End Role="corridas" EntitySet="corridas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_itineriarios_terminales_destino" Association="rysi_adoModel.Store.FK_itineriarios_terminales_destino">
+            <End Role="terminales" EntitySet="terminales" />
+            <End Role="itineriarios" EntitySet="itineriarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_itineriarios_terminales_origen" Association="rysi_adoModel.Store.FK_itineriarios_terminales_origen">
+            <End Role="terminales" EntitySet="terminales" />
+            <End Role="itineriarios" EntitySet="itineriarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_terminales_ciudades" Association="rysi_adoModel.Store.FK_terminales_ciudades">
+            <End Role="ciudades" EntitySet="ciudades" />
+            <End Role="terminales" EntitySet="terminales" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="autobuses">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="linea" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="estatus" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="capacidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="boletos">
+          <Key>
+            <PropertyRef Name="folio" />
+          </Key>
+          <Property Name="folio" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="corrida" Type="varchar" MaxLength="10" />
+          <Property Name="tipoboleto" Type="int" Nullable="false" />
+          <Property Name="pasajero" Type="varchar" MaxLength="100" />
+          <Property Name="asiento" Type="int" Nullable="false" />
+          <Property Name="precio" Type="numeric" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="iva" Type="numeric" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="estatus" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ciudades">
+          <Key>
+            <PropertyRef Name="idciudad" />
+          </Key>
+          <Property Name="idciudad" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="idestado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="corridas">
+          <Key>
+            <PropertyRef Name="folio" />
+          </Key>
+          <Property Name="folio" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="itinerario" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="servicio" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="estatus" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="precio" Type="numeric" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="iva" Type="numeric" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="total" Type="numeric" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="disponibles" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estados">
+          <Key>
+            <PropertyRef Name="idestado" />
+          </Key>
+          <Property Name="idestado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="itineriarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="origen" Type="int" Nullable="false" />
+          <Property Name="destino" Type="int" Nullable="false" />
+          <Property Name="horasalida" Type="time" />
+          <Property Name="estimadohrs" Type="real" />
+        </EntityType>
+        <EntityType Name="terminales">
+          <Key>
+            <PropertyRef Name="idterminal" />
+          </Key>
+          <Property Name="idterminal" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="70" />
+          <Property Name="idciudad" Type="int" Nullable="false" />
+          <Property Name="codigoterminal" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <Association Name="FK_boletos_corridas">
+          <End Role="corridas" Type="rysi_adoModel.Store.corridas" Multiplicity="0..1" />
+          <End Role="boletos" Type="rysi_adoModel.Store.boletos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="corridas">
+              <PropertyRef Name="folio" />
+            </Principal>
+            <Dependent Role="boletos">
+              <PropertyRef Name="corrida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ciudades_estados">
+          <End Role="estados" Type="rysi_adoModel.Store.estados" Multiplicity="1" />
+          <End Role="ciudades" Type="rysi_adoModel.Store.ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estados">
+              <PropertyRef Name="idestado" />
+            </Principal>
+            <Dependent Role="ciudades">
+              <PropertyRef Name="idestado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_corridas_itineriarios">
+          <End Role="itineriarios" Type="rysi_adoModel.Store.itineriarios" Multiplicity="1" />
+          <End Role="corridas" Type="rysi_adoModel.Store.corridas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="itineriarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="corridas">
+              <PropertyRef Name="itinerario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_itineriarios_terminales_destino">
+          <End Role="terminales" Type="rysi_adoModel.Store.terminales" Multiplicity="1" />
+          <End Role="itineriarios" Type="rysi_adoModel.Store.itineriarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="terminales">
+              <PropertyRef Name="idterminal" />
+            </Principal>
+            <Dependent Role="itineriarios">
+              <PropertyRef Name="destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_itineriarios_terminales_origen">
+          <End Role="terminales" Type="rysi_adoModel.Store.terminales" Multiplicity="1" />
+          <End Role="itineriarios" Type="rysi_adoModel.Store.itineriarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="terminales">
+              <PropertyRef Name="idterminal" />
+            </Principal>
+            <Dependent Role="itineriarios">
+              <PropertyRef Name="origen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_terminales_ciudades">
+          <End Role="ciudades" Type="rysi_adoModel.Store.ciudades" Multiplicity="1" />
+          <End Role="terminales" Type="rysi_adoModel.Store.terminales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudades">
+              <PropertyRef Name="idciudad" />
+            </Principal>
+            <Dependent Role="terminales">
+              <PropertyRef Name="idciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="rysi_adoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="rysi_adoEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="autobuses" EntityType="rysi_adoModel.autobus" />
+          <EntitySet Name="boletos" EntityType="rysi_adoModel.boleto" />
+          <EntitySet Name="ciudades" EntityType="rysi_adoModel.ciudade" />
+          <EntitySet Name="corridas" EntityType="rysi_adoModel.corrida" />
+          <EntitySet Name="estados" EntityType="rysi_adoModel.estado" />
+          <EntitySet Name="itineriarios" EntityType="rysi_adoModel.itineriario" />
+          <EntitySet Name="terminales" EntityType="rysi_adoModel.terminale" />
+          <AssociationSet Name="FK_boletos_corridas" Association="rysi_adoModel.FK_boletos_corridas">
+            <End Role="corridas" EntitySet="corridas" />
+            <End Role="boletos" EntitySet="boletos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ciudades_estados" Association="rysi_adoModel.FK_ciudades_estados">
+            <End Role="estados" EntitySet="estados" />
+            <End Role="ciudades" EntitySet="ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_terminales_ciudades" Association="rysi_adoModel.FK_terminales_ciudades">
+            <End Role="ciudades" EntitySet="ciudades" />
+            <End Role="terminales" EntitySet="terminales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_corridas_itineriarios" Association="rysi_adoModel.FK_corridas_itineriarios">
+            <End Role="itineriarios" EntitySet="itineriarios" />
+            <End Role="corridas" EntitySet="corridas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_itineriarios_terminales_destino" Association="rysi_adoModel.FK_itineriarios_terminales_destino">
+            <End Role="terminales" EntitySet="terminales" />
+            <End Role="itineriarios" EntitySet="itineriarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_itineriarios_terminales_origen" Association="rysi_adoModel.FK_itineriarios_terminales_origen">
+            <End Role="terminales" EntitySet="terminales" />
+            <End Role="itineriarios" EntitySet="itineriarios" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="autobus">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="linea" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="capacidad" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="boleto">
+          <Key>
+            <PropertyRef Name="folio" />
+          </Key>
+          <Property Name="folio" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="corrida" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="tipoboleto" Type="Int32" Nullable="false" />
+          <Property Name="pasajero" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="asiento" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="iva" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="estatus" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="corrida1" Relationship="rysi_adoModel.FK_boletos_corridas" FromRole="boletos" ToRole="corridas" />
+        </EntityType>
+        <EntityType Name="ciudade">
+          <Key>
+            <PropertyRef Name="idciudad" />
+          </Key>
+          <Property Name="idciudad" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="idestado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="estado" Relationship="rysi_adoModel.FK_ciudades_estados" FromRole="ciudades" ToRole="estados" />
+          <NavigationProperty Name="terminales" Relationship="rysi_adoModel.FK_terminales_ciudades" FromRole="ciudades" ToRole="terminales" />
+        </EntityType>
+        <EntityType Name="corrida">
+          <Key>
+            <PropertyRef Name="folio" />
+          </Key>
+          <Property Name="folio" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="itinerario" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="servicio" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="precio" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="iva" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="total" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="disponibles" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="boletos" Relationship="rysi_adoModel.FK_boletos_corridas" FromRole="corridas" ToRole="boletos" />
+          <NavigationProperty Name="itineriario" Relationship="rysi_adoModel.FK_corridas_itineriarios" FromRole="corridas" ToRole="itineriarios" />
+        </EntityType>
+        <EntityType Name="estado">
+          <Key>
+            <PropertyRef Name="idestado" />
+          </Key>
+          <Property Name="idestado" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="ciudades" Relationship="rysi_adoModel.FK_ciudades_estados" FromRole="estados" ToRole="ciudades" />
+        </EntityType>
+        <EntityType Name="itineriario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="origen" Type="Int32" Nullable="false" />
+          <Property Name="destino" Type="Int32" Nullable="false" />
+          <Property Name="horasalida" Type="Time" Precision="7" />
+          <Property Name="estimadohrs" Type="Single" />
+          <NavigationProperty Name="corridas" Relationship="rysi_adoModel.FK_corridas_itineriarios" FromRole="itineriarios" ToRole="corridas" />
+          <NavigationProperty Name="terminale" Relationship="rysi_adoModel.FK_itineriarios_terminales_destino" FromRole="itineriarios" ToRole="terminales" />
+          <NavigationProperty Name="terminale1" Relationship="rysi_adoModel.FK_itineriarios_terminales_origen" FromRole="itineriarios" ToRole="terminales" />
+        </EntityType>
+        <EntityType Name="terminale">
+          <Key>
+            <PropertyRef Name="idterminal" />
+          </Key>
+          <Property Name="idterminal" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="70" Unicode="false" FixedLength="false" />
+          <Property Name="idciudad" Type="Int32" Nullable="false" />
+          <Property Name="codigoterminal" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="ciudade" Relationship="rysi_adoModel.FK_terminales_ciudades" FromRole="terminales" ToRole="ciudades" />
+          <NavigationProperty Name="itineriarios" Relationship="rysi_adoModel.FK_itineriarios_terminales_destino" FromRole="terminales" ToRole="itineriarios" />
+          <NavigationProperty Name="itineriarios1" Relationship="rysi_adoModel.FK_itineriarios_terminales_origen" FromRole="terminales" ToRole="itineriarios" />
+        </EntityType>
+        <Association Name="FK_boletos_corridas">
+          <End Role="corridas" Type="rysi_adoModel.corrida" Multiplicity="0..1" />
+          <End Role="boletos" Type="rysi_adoModel.boleto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="corridas">
+              <PropertyRef Name="folio" />
+            </Principal>
+            <Dependent Role="boletos">
+              <PropertyRef Name="corrida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ciudades_estados">
+          <End Role="estados" Type="rysi_adoModel.estado" Multiplicity="1" />
+          <End Role="ciudades" Type="rysi_adoModel.ciudade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estados">
+              <PropertyRef Name="idestado" />
+            </Principal>
+            <Dependent Role="ciudades">
+              <PropertyRef Name="idestado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_terminales_ciudades">
+          <End Role="ciudades" Type="rysi_adoModel.ciudade" Multiplicity="1" />
+          <End Role="terminales" Type="rysi_adoModel.terminale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudades">
+              <PropertyRef Name="idciudad" />
+            </Principal>
+            <Dependent Role="terminales">
+              <PropertyRef Name="idciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_corridas_itineriarios">
+          <End Role="itineriarios" Type="rysi_adoModel.itineriario" Multiplicity="1" />
+          <End Role="corridas" Type="rysi_adoModel.corrida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="itineriarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="corridas">
+              <PropertyRef Name="itinerario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_itineriarios_terminales_destino">
+          <End Role="terminales" Type="rysi_adoModel.terminale" Multiplicity="1" />
+          <End Role="itineriarios" Type="rysi_adoModel.itineriario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="terminales">
+              <PropertyRef Name="idterminal" />
+            </Principal>
+            <Dependent Role="itineriarios">
+              <PropertyRef Name="destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_itineriarios_terminales_origen">
+          <End Role="terminales" Type="rysi_adoModel.terminale" Multiplicity="1" />
+          <End Role="itineriarios" Type="rysi_adoModel.itineriario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="terminales">
+              <PropertyRef Name="idterminal" />
+            </Principal>
+            <Dependent Role="itineriarios">
+              <PropertyRef Name="origen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="rysi_adoModelStoreContainer" CdmEntityContainer="rysi_adoEntities">
+          <EntitySetMapping Name="autobuses">
+            <EntityTypeMapping TypeName="rysi_adoModel.autobus">
+              <MappingFragment StoreEntitySet="autobuses">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="linea" ColumnName="linea" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="boletos">
+            <EntityTypeMapping TypeName="rysi_adoModel.boleto">
+              <MappingFragment StoreEntitySet="boletos">
+                <ScalarProperty Name="folio" ColumnName="folio" />
+                <ScalarProperty Name="corrida" ColumnName="corrida" />
+                <ScalarProperty Name="tipoboleto" ColumnName="tipoboleto" />
+                <ScalarProperty Name="pasajero" ColumnName="pasajero" />
+                <ScalarProperty Name="asiento" ColumnName="asiento" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="iva" ColumnName="iva" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ciudades">
+            <EntityTypeMapping TypeName="rysi_adoModel.ciudade">
+              <MappingFragment StoreEntitySet="ciudades">
+                <ScalarProperty Name="idciudad" ColumnName="idciudad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idestado" ColumnName="idestado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="corridas">
+            <EntityTypeMapping TypeName="rysi_adoModel.corrida">
+              <MappingFragment StoreEntitySet="corridas">
+                <ScalarProperty Name="folio" ColumnName="folio" />
+                <ScalarProperty Name="itinerario" ColumnName="itinerario" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="servicio" ColumnName="servicio" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="iva" ColumnName="iva" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="disponibles" ColumnName="disponibles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estados">
+            <EntityTypeMapping TypeName="rysi_adoModel.estado">
+              <MappingFragment StoreEntitySet="estados">
+                <ScalarProperty Name="idestado" ColumnName="idestado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="itineriarios">
+            <EntityTypeMapping TypeName="rysi_adoModel.itineriario">
+              <MappingFragment StoreEntitySet="itineriarios">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="origen" ColumnName="origen" />
+                <ScalarProperty Name="destino" ColumnName="destino" />
+                <ScalarProperty Name="horasalida" ColumnName="horasalida" />
+                <ScalarProperty Name="estimadohrs" ColumnName="estimadohrs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="terminales">
+            <EntityTypeMapping TypeName="rysi_adoModel.terminale">
+              <MappingFragment StoreEntitySet="terminales">
+                <ScalarProperty Name="idterminal" ColumnName="idterminal" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idciudad" ColumnName="idciudad" />
+                <ScalarProperty Name="codigoterminal" ColumnName="codigoterminal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

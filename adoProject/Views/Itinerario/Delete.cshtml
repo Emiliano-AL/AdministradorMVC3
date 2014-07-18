@@ -1,0 +1,38 @@
+﻿@model adoProject.Models.itineriario
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Esta seguro de eliminar este itinerario?</h3>
+<fieldset>
+    <legend>itineriario</legend>
+
+    <div class="display-label">Origen</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.terminale1.nombre)
+    </div>
+
+    <div class="display-label">Destino</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.terminale.nombre)
+    </div>
+
+    <div class="display-label">Hora de salida</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.horasalida)
+    </div>
+
+    <div class="display-label">Horas estimadas</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.estimadohrs)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Regresar", "Index")
+    </p>
+}

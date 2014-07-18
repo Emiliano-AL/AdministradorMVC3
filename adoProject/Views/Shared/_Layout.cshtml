@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/justified-nav.css")" rel="stylesheet" type="text/css" />
+
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.js")" type="text/javascript"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="masthead">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-5">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Sistema ADO</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
+                <p class="navbar-text navbar-right"><a href="/Home/About" class="navbar-link">Acerca de</a></p>
+            </div>
+        </div>
+        
+        <ul class="nav nav-justified">
+          <li><a href="/Autobus">Autobuses</a></li>
+          <li><a href="/Boleto">Boletos</a></li>
+          <li><a href="/Ciudad">Ciudades</a></li>
+          <li><a href="/Corrida">Corridas</a></li>
+          <li><a href="/Estado">Estados</a></li>
+          <li><a href="/Itinerario">Itinerario</a></li>
+          <li><a href="/Terminal">Terminal</a></li>
+        </ul>
+      </div>
+
+        @RenderBody()
+      <!-- Site footer -->
+      <div class="footer">
+        <p>&copy; LANIA 2014</p>
+      </div>
+
+    </div><!--FIN container-->
+</body>
+</html>

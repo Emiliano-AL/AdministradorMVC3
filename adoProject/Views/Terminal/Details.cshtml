@@ -1,0 +1,35 @@
+﻿@model adoProject.Models.terminale
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalle</h2>
+
+<fieldset>
+    <legend>Terminal</legend>
+
+   @* <div class="display-label">idterminal</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idterminal)
+    </div>*@
+
+    <div class="display-label">nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">ciudad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ciudade.nombre)
+    </div>
+
+    <div class="display-label">codigo de terminal</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.codigoterminal)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id=Model.idterminal }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

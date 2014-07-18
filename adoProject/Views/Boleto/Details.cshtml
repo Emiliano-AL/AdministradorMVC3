@@ -1,0 +1,55 @@
+﻿@model adoProject.Models.boleto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>boleto</legend>
+
+   @* <div class="display-label">folio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.folio)
+    </div>*@
+
+    <div class="display-label">corrida</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.corrida1.servicio)
+    </div>
+
+    <div class="display-label">tipoboleto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tipoboleto)
+    </div>
+
+    <div class="display-label">pasajero</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.pasajero)
+    </div>
+
+    <div class="display-label">asiento</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.asiento)
+    </div>
+
+    <div class="display-label">precio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.precio)
+    </div>
+
+    <div class="display-label">iva</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.iva)
+    </div>
+
+    <div class="display-label">estatus</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.estatus)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id=Model.folio }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

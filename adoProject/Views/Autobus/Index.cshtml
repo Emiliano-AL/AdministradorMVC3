@@ -1,0 +1,24 @@
+﻿@model IEnumerable<adoProject.Models.autobus>
+
+@{
+    ViewBag.Title = "Index";
+   WebGrid grid = new WebGrid(Model);
+}
+
+<h2>Autobuses</h2>
+@grid.GetHtml(tableStyle:"table table-hover", columns: new []{
+    grid.Column("linea", canSort:false, header:"Línea"),
+    grid.Column("estatus", canSort:true, header:"Estatus"),
+    grid.Column("capacidad", canSort:false, header:"Capacidad"),
+    grid.Column(header:"Acciones", format:@<text>
+        @Html.ActionLink("Editar", "Edit", new { id=item.codigo}) | 
+        @Html.ActionLink("Detalle", "Details", new { id=item.codigo }) |
+        @Html.ActionLink("Eliminar", "Delete", new { id=item.codigo })
+    </text>)
+})
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+

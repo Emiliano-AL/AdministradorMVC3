@@ -1,0 +1,58 @@
+﻿@model adoProject.Models.boleto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>boleto</legend>
+
+    <div class="display-label">folio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.folio)
+    </div>
+
+    <div class="display-label">corrida1</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.corrida1.servicio)
+    </div>
+
+    <div class="display-label">tipoboleto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tipoboleto)
+    </div>
+
+    <div class="display-label">pasajero</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.pasajero)
+    </div>
+
+    <div class="display-label">asiento</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.asiento)
+    </div>
+
+    <div class="display-label">precio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.precio)
+    </div>
+
+    <div class="display-label">iva</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.iva)
+    </div>
+
+    <div class="display-label">estatus</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.estatus)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

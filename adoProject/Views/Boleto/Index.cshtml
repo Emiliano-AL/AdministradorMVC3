@@ -1,0 +1,28 @@
+﻿@model IEnumerable<adoProject.Models.boleto>
+
+@{
+    ViewBag.Title = "Index";
+   WebGrid grid = new WebGrid(Model);
+}
+
+<h2>Boletos</h2>
+@grid.GetHtml(tableStyle:"table table-hover", columns: new []{
+    grid.Column("folio", canSort:false, header:"Folio"),
+    grid.Column("Corrida", canSort:false, format: t => t.corrida1.servicio ),
+    grid.Column("tipoboleto", canSort:true, header:"Tipo de boleto"),
+    grid.Column("pasajero", canSort:false, header:"Tipo de pasajero"),
+    grid.Column("asiento", canSort:false, header:"Asiento"),
+    grid.Column("precio", canSort:false, header:"Precio"),
+    grid.Column("iva", canSort:false, header:"IVA"),
+    grid.Column("estatus", canSort:false, header:"Estatus"),
+    grid.Column(header:"Acciones", format:@<text>
+        @Html.ActionLink("Editar", "Edit", new { id=item.folio}) | 
+        @Html.ActionLink("Detalle", "Details", new { id=item.folio }) |
+        @Html.ActionLink("Eliminar", "Delete", new { id=item.folio })
+    </text>)
+})
+
+<p>
+    @Html.ActionLink("Registrar boleto", "Create")
+</p>
+

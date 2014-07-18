@@ -1,0 +1,38 @@
+﻿@model adoProject.Models.autobus
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>autobus</legend>
+
+    <div class="display-label">codigo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.codigo)
+    </div>
+
+    <div class="display-label">linea</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.linea)
+    </div>
+
+    <div class="display-label">estatus</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.estatus)
+    </div>
+
+    <div class="display-label">capacidad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.capacidad)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

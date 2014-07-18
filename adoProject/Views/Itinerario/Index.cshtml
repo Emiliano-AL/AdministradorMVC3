@@ -1,0 +1,24 @@
+﻿@model IEnumerable<adoProject.Models.itineriario>
+
+@{
+    ViewBag.Title = "Index";
+    WebGrid grid = new WebGrid(Model);
+}
+
+<h2>Itinerarios</h2>
+@grid.GetHtml(tableStyle:"table table-hover", columns: new []{
+    grid.Column("Origen", canSort:true, format: t => t.terminale1.nombre ),
+    grid.Column("Destino", canSort:false, format: t => t.terminale.nombre ),
+    grid.Column("horasalida", canSort:false, header:"Hora de salida"),
+    grid.Column("estimadohrs", canSort:false, header:"Horas estimadas"),
+    grid.Column(header:"Acciones", format:@<text>
+        @Html.ActionLink("Editar", "Edit", new { id=item.id }) | 
+        @Html.ActionLink("Detalle", "Details", new { id=item.id }) |
+        @Html.ActionLink("Eliminar", "Delete", new { id=item.id })
+    </text>)
+})
+
+<p>
+    @Html.ActionLink("Agregar itinerario", "Create")
+</p>
+

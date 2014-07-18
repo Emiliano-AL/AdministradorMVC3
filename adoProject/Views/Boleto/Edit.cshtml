@@ -1,0 +1,89 @@
+﻿@model adoProject.Models.boleto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>boleto</legend>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.folio)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.folio)
+            @Html.ValidationMessageFor(model => model.folio)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.corrida, "corrida1")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("corrida", String.Empty)
+            @Html.ValidationMessageFor(model => model.corrida)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.tipoboleto)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.tipoboleto)
+            @Html.ValidationMessageFor(model => model.tipoboleto)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pasajero)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pasajero)
+            @Html.ValidationMessageFor(model => model.pasajero)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.asiento)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.asiento)
+            @Html.ValidationMessageFor(model => model.asiento)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.precio)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.precio)
+            @Html.ValidationMessageFor(model => model.precio)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.iva)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.iva)
+            @Html.ValidationMessageFor(model => model.iva)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.estatus)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.estatus)
+            @Html.ValidationMessageFor(model => model.estatus)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

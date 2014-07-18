@@ -1,0 +1,23 @@
+﻿@model IEnumerable<adoProject.Models.terminale>
+
+@{
+    ViewBag.Title = "Terminal";
+    WebGrid grid = new WebGrid(Model);
+}
+
+<h2>Terminales</h2>
+@grid.GetHtml(tableStyle:"table table-hover", columns: new []{
+    grid.Column("Ciudad", canSort:false, format: t => t.ciudade.nombre ),
+    grid.Column("nombre", header:"Nombre terminal"),
+    grid.Column("codigoterminal", header:"Código terminal"),
+    grid.Column(header:"Acciones", format:@<text>
+        @Html.ActionLink("Editar", "Edit", new { id=item.idterminal }) | 
+        @Html.ActionLink("Detalle", "Details", new { id=item.idterminal }) |
+        @Html.ActionLink("Eliminar", "Delete", new { id=item.idterminal })
+    </text>)
+})
+
+<p>
+    @Html.ActionLink("Agregar terminal", "Create")
+</p>
+

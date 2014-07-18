@@ -1,0 +1,20 @@
+﻿@model IEnumerable<adoProject.Models.estado>
+
+@{
+    ViewBag.Title = "Index";
+ WebGrid grid = new WebGrid(Model);
+}
+
+<h2>Estados</h2>
+@grid.GetHtml(tableStyle:"table table-hover", columns: new []{
+    grid.Column("nombre", header:"Nombre"),
+    grid.Column(header:"Acciones", format:@<text>
+        @Html.ActionLink("Editar", "Edit", new { id=item.idestado }) | 
+        @Html.ActionLink("Detalle", "Details", new { id=item.idestado }) |
+        @Html.ActionLink("Eliminar", "Delete", new { id=item.idestado })
+    </text>)
+})
+
+<p>
+    @Html.ActionLink("Agregar estado", "Create")
+</p>

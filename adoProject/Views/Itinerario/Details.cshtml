@@ -1,0 +1,35 @@
+﻿@model adoProject.Models.itineriario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalle</h2>
+
+<fieldset>
+    <legend>Itineriario</legend>
+
+    <div class="display-label">Origen</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.terminale1.nombre)
+    </div>
+
+    <div class="display-label">Destino</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.terminale.nombre)
+    </div>
+
+    <div class="display-label">hora salida</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.horasalida)
+    </div>
+
+    <div class="display-label">horas estimadas</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.estimadohrs)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>
